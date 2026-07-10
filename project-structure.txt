@@ -1,45 +1,162 @@
 csms-backend/
-|-- .env.example
-|-- .gitignore
-|-- LICENSE
-|-- README.md
-|-- alembic.ini
-|-- project-structure.txt
-|-- requirements.txt
-|-- alembic/
-|   |-- README
-|   |-- env.py
-|   `-- script.py.mako
-|-- app/
-|   |-- __init__.py
-|   |-- config.py
-|   |-- database.py
-|   |-- main.py
-|   |-- api/
-|   |   |-- __init__.py
-|   |   |-- version_routes.py
-|   |   `-- v1/
-|   |       |-- __init__.py
-|   |       |-- routes.py
-|   |       `-- controllers/
-|   |           |-- __init__.py
-|   |           `-- users.py
-|   |-- core/
-|   |   |-- __init__.py
-|   |   `-- security.py
-|   |-- models/
-|   |   |-- __init__.py
-|   |   |-- base.py
-|   |   `-- user.py
-|   |-- schemas/
-|   |   |-- __init__.py
-|   |   `-- user.py
-|   |-- services/
-|   |   |-- __init__.py
-|   |   `-- attendance_service.py
-|   `-- utils/
-|       `-- __init__.py
-`-- tests/
-	|-- __init__.py
-	|-- conftest.py
-	`-- test_health.py
+│
+├── .env.example
+├── .gitignore
+├── .pre-commit-config.yaml
+├── LICENSE
+├── README.md
+├── requirements.txt
+├── alembic.ini
+├── Dockerfile
+├── docker-compose.yml
+│
+├── alembic/
+│   ├── README
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions/
+│
+├── docs/
+│   ├── architecture/
+│   ├── api/
+│   ├── business_rules/
+│   ├── database/
+│   ├── prompts/
+│   └── adr/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   │
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── deps.py
+│   │   └── v1/
+│   │       ├── __init__.py
+│   │       ├── router.py
+│   │       └── endpoints/
+│   │           ├── auth.py
+│   │           ├── users.py
+│   │           ├── workers.py
+│   │           ├── attendance.py
+│   │           ├── sites.py
+│   │           ├── expenses.py
+│   │           ├── warehouse.py
+│   │           ├── purchases.py
+│   │           ├── drivers.py
+│   │           ├── reports.py
+│   │           └── dashboard.py
+│   │
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   ├── security.py
+│   │   ├── permissions.py
+│   │   ├── logging.py
+│   │   └── exceptions.py
+│   │
+│   ├── db/
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── database.py
+│   │   ├── session.py
+│   │   └── init_db.py
+│   │
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── user.py
+│   │   ├── worker.py
+│   │   ├── attendance.py
+│   │   ├── expense.py
+│   │   ├── purchase.py
+│   │   ├── warehouse.py
+│   │   ├── stock.py
+│   │   ├── wallet.py
+│   │   └── site.py
+│   │
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── common.py
+│   │   ├── auth.py
+│   │   ├── user.py
+│   │   ├── worker.py
+│   │   ├── attendance.py
+│   │   ├── expense.py
+│   │   ├── purchase.py
+│   │   ├── warehouse.py
+│   │   ├── report.py
+│   │   └── dashboard.py
+│   │
+│   ├── repositories/
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── user_repository.py
+│   │   ├── worker_repository.py
+│   │   ├── attendance_repository.py
+│   │   ├── expense_repository.py
+│   │   ├── purchase_repository.py
+│   │   ├── warehouse_repository.py
+│   │   ├── stock_repository.py
+│   │   ├── wallet_repository.py
+│   │   └── report_repository.py
+│   │
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── auth_service.py
+│   │   ├── user_service.py
+│   │   ├── worker_service.py
+│   │   ├── attendance_service.py
+│   │   ├── expense_service.py
+│   │   ├── purchase_service.py
+│   │   ├── warehouse_service.py
+│   │   ├── wallet_service.py
+│   │   ├── report_service.py
+│   │   └── dashboard_service.py
+│   │
+│   ├── dependencies/
+│   │   ├── __init__.py
+│   │   ├── auth.py
+│   │   ├── roles.py
+│   │   ├── pagination.py
+│   │   └── permissions.py
+│   │
+│   ├── middleware/
+│   │   ├── __init__.py
+│   │   ├── logging.py
+│   │   ├── request_id.py
+│   │   └── timing.py
+│   │
+│   ├── validators/
+│   │   ├── __init__.py
+│   │   ├── attendance.py
+│   │   ├── expense.py
+│   │   ├── purchase.py
+│   │   └── worker.py
+│   │
+│   ├── constants/
+│   │   ├── __init__.py
+│   │   ├── enums.py
+│   │   ├── permissions.py
+│   │   └── roles.py
+│   │
+│   └── utils/
+│       ├── __init__.py
+│       ├── datetime.py
+│       ├── helpers.py
+│       ├── pagination.py
+│       └── response.py
+│
+├── scripts/
+│   ├── seed_admin.py
+│   └── seed_demo_data.py
+│
+└── tests/
+    ├── __init__.py
+    ├── conftest.py
+    ├── fixtures/
+    ├── factories/
+    ├── api/
+    ├── repositories/
+    ├── services/
+    ├── integration/
+    └── test_health.py
